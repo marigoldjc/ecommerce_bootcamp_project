@@ -24,6 +24,18 @@ class Cart(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def get_cart_total(self):
+        cartitems = self.cartitem_set.all()
+        total = sum([item.get_total for item in cartitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        cartitems = self.cartitem_set.all():
+        total = sum([item.quantity for item in cartitems])
+        return total
+
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
     cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, blank=True, null=True)
