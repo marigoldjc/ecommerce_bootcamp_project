@@ -16,7 +16,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class Order(models.Model):
+class Cart(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
@@ -24,8 +24,8 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
 
-class OrderItem(models.Model):
+class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
