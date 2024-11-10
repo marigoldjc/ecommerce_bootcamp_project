@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Cart
+from .models import Category, Product, Cart, CartItem
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
@@ -14,3 +14,4 @@ class CartAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Cart, CartAdmin)
+admin.site.register(CartItem, CartItemAdmin)
