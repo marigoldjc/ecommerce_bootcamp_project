@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import CheckoutForm
-from .models import Product, Category
+from .models import *
 from django.http import HttpResponse
 import uuid
 
@@ -26,6 +26,12 @@ def cart_page(request):
     cart = request.session.get('cart', {})
     products = Product.objects.filter(id__in=cart.keys())
     return render(request, 'ecommerce_app/cart_page.html', {'cart': cart, 'products': products})
+
+def cart(request):
+    items = cart.cartitem_set.all()
+    items = []
+    context = {'items':items, 'order':order}
+    return render(request, 'ecommerce_app/cart_page.html, context)
 
 def checkout_page(request):
     if request.method == 'POST':
